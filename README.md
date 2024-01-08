@@ -1,0 +1,2 @@
+# TypeWriterJS
+Typewriter effect JS
