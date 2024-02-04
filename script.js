@@ -30,7 +30,6 @@ const typer = (element, dataText, i) => {
       element.innerHTML += dataText[i];
       i++;
       setTimeout(() => {
-        console.log("write: " + i);
         typer(element, dataText, i);
       }, typeSpeed + Math.floor(Math.random() * 100));
     }
