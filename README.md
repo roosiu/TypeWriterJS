@@ -11,3 +11,8 @@
 >
 >**exemple element:** `<span class="typeWriter" data-text="Hi, Im Typewriter./I am JS script./I Love typing on Keyboard./I Love to Remove."></span>`
 
+
+![video_tw](https://github.com/roosiu/TypeWriterJS/assets/58402852/c9ec86f4-59e2-4f28-ad2f-cac049d11448)
+
+
+
