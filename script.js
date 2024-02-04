@@ -9,43 +9,64 @@ const typeWriter = () => {
   for (let index = 0; index < collection.length; index++) {
     const element = collection[index];
     const dataText = element.dataset.text;
-    typer(element, dataText, 0); // send element hook and array to function
-    createCursor(element);
+    if (dataText) {
+      typer(element, dataText, 0); // send element hook and array to function
+      createCursor(element);
+    }
   }
 };
 const typer = (element, dataText, i) => {
   let typeSpeed = 200;
+  let pauseTime = 1500;
 
   if (i < dataText.length) {
     if (dataText[i] == "/") {
       i++;
-      deleter(element, dataText, i);
+      setTimeout(() => {
+        deleter(element, dataText, i);
+        console.log(i);
+      }, pauseTime);
     } else {
       element.innerHTML += dataText[i];
       i++;
-      setTimeout(
-        () => typer(element, dataText, i),
-        typeSpeed + Math.floor(Math.random() * 100)
-      );
+      setTimeout(() => {
+        typer(element, dataText, i);
+      }, typeSpeed + Math.floor(Math.random() * 100));
     }
   }
 };
 
 const deleter = (element, dataText, i) => {
-  for (let index = 0; index < i - 1; index++) {
-    if (element.innerHTML.length === 0) {
-      console.log("end"); /// nie działa
-      // typer(element, dataText, i);
-    } else {
-      setTimeout(() => {
+  let deleteSpeed = 200;
+  for (let index = i - element.innerHTML.length; index <= i; index++) {
+    // for (let index = 0; index <= i; index++) {
+    // console.log(i - element.innerHTML.length - 1);
+    // <---------------------fix it
+    setTimeout(() => {
+      if (index === i) {
+        console.log(`i = ${i};
+        index = ${index}`);
+        typer(element, dataText, i);
+      } else {
         element.innerHTML = element.innerHTML.slice(0, -1);
         console.log(element.innerHTML.length);
-      }, 200 * index);
-    }
+        console.log(`i = ${i};
+        index = ${index}`);
+      }
+    }, deleteSpeed * index);
   }
 };
 
 // create cursor imitation
 const createCursor = (element) => {
   element.style.borderRight = "solid 24px";
+  const blinkSpeed = 700;
+  const computedStyle = window.getComputedStyle(element);
+  const textColor = computedStyle.color.match(/\d+/g);
+  setInterval(function () {
+    const currentOpacity = parseFloat(element.style.borderColorOpacity) || 0;
+    const newOpacity = currentOpacity === 1 ? 0 : 1;
+    element.style.borderColorOpacity = newOpacity;
+    element.style.borderColor = `rgba(${textColor[0]}, ${textColor[1]}, ${textColor[2]}, ${newOpacity})`;
+  }, blinkSpeed);
 };
