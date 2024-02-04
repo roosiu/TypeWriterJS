@@ -1,24 +1,41 @@
 * {
-    padding: 0;
-    margin: 0;
-
+  padding: 0;
+  margin: 0;
 }
 
 body {
-    background-color: rgb(37, 37, 37);
-    font-family: sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    color: rgb(219, 219, 219);
-  }
+  background: hsla(236, 100%, 8%, 1);
 
-.box{
-    padding: 50px;
-    font-size: 50px;
+  background: linear-gradient(
+    90deg,
+    hsla(236, 100%, 8%, 1) 0%,
+    hsla(211, 100%, 28%, 1) 100%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(236, 100%, 8%, 1) 0%,
+    hsla(211, 100%, 28%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(236, 100%, 8%, 1) 0%,
+    hsla(211, 100%, 28%, 1) 100%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#000328", endColorstr="#00458E", GradientType=1 );
+
+  font-family: courier, courier new, serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: rgb(252, 208, 208);
 }
 
-.typewriter-cursor{
-    font-size: 120%;
+.box {
+  padding: 50px;
+  font-size: 50px;
+  text-shadow: 2px 7px 24px rgba(0, 0, 0, 0.8);
 }

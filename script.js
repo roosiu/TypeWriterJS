@@ -15,6 +15,7 @@ const typeWriter = () => {
     }
   }
 };
+
 const typer = (element, dataText, i) => {
   let typeSpeed = 200;
   let pauseTime = 1500;
@@ -24,12 +25,12 @@ const typer = (element, dataText, i) => {
       i++;
       setTimeout(() => {
         deleter(element, dataText, i);
-        console.log(i);
       }, pauseTime);
     } else {
       element.innerHTML += dataText[i];
       i++;
       setTimeout(() => {
+        console.log("write: " + i);
         typer(element, dataText, i);
       }, typeSpeed + Math.floor(Math.random() * 100));
     }
@@ -38,28 +39,19 @@ const typer = (element, dataText, i) => {
 
 const deleter = (element, dataText, i) => {
   let deleteSpeed = 200;
-  for (let index = i - element.innerHTML.length; index <= i; index++) {
-    // for (let index = 0; index <= i; index++) {
-    // console.log(i - element.innerHTML.length - 1);
-    // <---------------------fix it
+  if (element.innerHTML.length) {
     setTimeout(() => {
-      if (index === i) {
-        console.log(`i = ${i};
-        index = ${index}`);
-        typer(element, dataText, i);
-      } else {
-        element.innerHTML = element.innerHTML.slice(0, -1);
-        console.log(element.innerHTML.length);
-        console.log(`i = ${i};
-        index = ${index}`);
-      }
-    }, deleteSpeed * index);
+      element.innerHTML = element.innerHTML.slice(0, -1);
+      deleter(element, dataText, i);
+    }, deleteSpeed);
+  } else {
+    typer(element, dataText, i);
   }
 };
 
 // create cursor imitation
 const createCursor = (element) => {
-  element.style.borderRight = "solid 24px";
+  element.style.borderRight = "solid 0.4em";
   const blinkSpeed = 700;
   const computedStyle = window.getComputedStyle(element);
   const textColor = computedStyle.color.match(/\d+/g);
